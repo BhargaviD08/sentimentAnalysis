@@ -8,20 +8,13 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 from nltk.corpus import stopwords
 import nltk
-
-# -----------------------------
 # Streamlit settings
-# -----------------------------
 st.set_page_config(page_title="Flipkart/Amazon Sentiment Analysis", layout="wide")
 st.title("Sentiment Analysis on Flipkart / Amazon Reviews")
-
 # Download stopwords
 nltk.download('stopwords')
 english_stopwords = stopwords.words("english")
-
-# -----------------------------
 # File upload or URL input
-# -----------------------------
 st.subheader("Upload Dataset or Enter URL")
 uploaded_file = st.file_uploader("Upload CSV file with columns: 'review', 'rating'", type=["csv"])
 url_input = st.text_input("Or enter a CSV URL:")
@@ -35,9 +28,7 @@ elif url_input.strip() != "":
     except Exception as e:
         st.error(f"Error reading URL: {e}")
 
-# -----------------------------
 # Dataset preview and validation
-# -----------------------------
 if df is not None:
     st.subheader("Dataset Preview")
     st.write(df.head())
@@ -82,9 +73,8 @@ if df is not None:
         ax.pie(sentiment_counts, labels=["Positive", "Negative"], autopct='%1.1f%%', startangle=90)
         st.pyplot(fig)
 
-        # -----------------------------
+
         # Test custom review
-        # -----------------------------
         st.subheader("Test Your Own Review")
         user_review = st.text_area("Enter a review here:")
 
